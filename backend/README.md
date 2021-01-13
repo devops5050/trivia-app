@@ -114,6 +114,7 @@ Trivia API endpoints are REST end points. At high level, it provides following e
     It returns collection of different categories (key/values), success flag.
     
     Sample: curl http://127.0.0.1:5000/categories
+
         {
             "categories": {
                 "1": "Science", 
@@ -131,6 +132,7 @@ Trivia API endpoints are REST end points. At high level, it provides following e
     It returns collection of categories, questions along with current category, total # of questions and success flag.
     
     Sample: curl http://127.0.0.1:5000/questions
+
         {
             "categories": {
                 "1": "Science", 
