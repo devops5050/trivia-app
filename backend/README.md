@@ -110,7 +110,9 @@ GET '/categories'
 Trivia API endpoints are REST end points. At high level, it provides following endpoints:
 
 1. GET /categories
+
     It returns collection of different categories (key/values), success flag.
+    
     Sample: curl http://127.0.0.1:5000/categories
         {
             "categories": {
@@ -123,8 +125,11 @@ Trivia API endpoints are REST end points. At high level, it provides following e
             }, 
             "success": true
         }
+
 2. GET /questions
+
     It returns collection of categories, questions along with current category, total # of questions and success flag.
+    
     Sample: curl http://127.0.0.1:5000/questions
         {
             "categories": {
@@ -155,17 +160,24 @@ Trivia API endpoints are REST end points. At high level, it provides following e
             "success": true, 
             "total_questions": 21
         }
+
 3. DELETE /questions/<int:question_id>
     It deletes specific question from the database based on question id provided in a request object.
+    
     Sample: curl -X DELETE http://127.0.0.1:5000/questions/21
-3. POST /questions
+
+4. POST /questions
     It creates a new record in the database based on request object which contains question, its answer, category, and difficulty level.
-4. POST /questions/search
+
+5. POST /questions/search
     It accepts Search term from user and returns a collection of questions from the database.
-5. GET /categories/<category_id>/questions
+
+6. GET /categories/<category_id>/questions
     It returns a collection of questions against a specific category value from the database.
-6. POST /quizzes
+
+7. POST /quizzes
     It returns a set of questions based on category selected or questions for all categories.
+    
     It also keeps track of previously asked questions so that previously asked questions are not repeated.
 
 ## Error Handling
