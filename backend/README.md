@@ -2,7 +2,7 @@
 
 ## Getting Started
 
-### Installing Dependencies
+### Installing Dependencies for project
 
 #### Python 3.7
 
