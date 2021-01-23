@@ -206,3 +206,13 @@ createdb trivia_test
 psql trivia_test < trivia.psql
 python test_flaskr.py
 ```
+## Troubleshooting Tips
+
+During initial setup / run, if following error is observed:
+
+TypeError: required field "type_ignores" missing from Module
+
+Please perform below steps:
+
+pip3 install --upgrade werkzeug 
+(Link: https://stackoverflow.com/questions/60140174/basic-flask-app-not-running-typeerror-required-field-type-ignores-missing-fr)
