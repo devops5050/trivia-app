@@ -1,0 +1,4 @@
+# nodejs ignore folder
+node_modules/
+
+

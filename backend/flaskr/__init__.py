@@ -2,7 +2,8 @@ import os
 from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-import random, secrets
+import random
+import secrets
 from models import setup_db, Question, Category
 
 # this is used in common function for number of records per page
@@ -10,20 +11,21 @@ QUESTIONS_PER_PAGE = 10
 
 
 def create_app(test_config=None):
-  # create and configure the app
-  app = Flask(__name__)
-  setup_db(app)
-  db = SQLAlchemy(app)
-  
-  ''' COMPLETED 
-  @TODO: Set up CORS. Allow '*' for origins. Delete the sample route after completing the TODOs
+    # create and configure the app
+    app = Flask(__name__)
+    setup_db(app)
+    db = SQLAlchemy(app)
+
+  ''' COMPLETED
+  @TODO: Set up CORS. Allow '*' for origins. Delete the sample route 
+  after completing the TODOs
   '''
-  #if we have to do resource specific usage then following can be uncommented in future:
-  #CORS(app, resources={r"/api/*": {"origins": "*"}})
+  # if we have to do resource specific usage then following can be uncommented in future:
+  # CORS(app, resources={r"/api/*": {"origins": "*"}})
 
   CORS(app)
 
-  ''' COMPLETED 
+  ''' COMPLETED
   @TODO: Use the after_request decorator to set Access-Control-Allow
   '''
 
@@ -72,8 +74,8 @@ def create_app(test_config=None):
   def get_categories():
     try:
       page = request.args.get('page', 1, type=int)
-      start = (page -1) * 10
-      end   = start + 10
+      start = (page - 1) * 10
+      end = start + 10
       categories = Category.query.all()
       formatted_categories = {category.id: category.type for category in categories}
       return jsonify({
@@ -81,7 +83,8 @@ def create_app(test_config=None):
           'categories': formatted_categories,
       })
     
-    except:
+    except Exception as e:
+      print(e)
       abort(400)
 
   @app.route('/questions', methods=['GET'])
@@ -109,7 +112,8 @@ def create_app(test_config=None):
         'current_category': None
       })
 
-    except:
+    except Exception as e:
+      print(e)
       abort(404)
 
   '''
@@ -149,7 +153,8 @@ def create_app(test_config=None):
         'current_category': None
       })
 
-    except:
+    except Exception as e:
+      print(e)
       abort(422)
 
   '''
@@ -187,7 +192,8 @@ def create_app(test_config=None):
         'total_questions': len(Question.query.all())
       })
 
-    except:
+    except Exception as e:
+      print(e)
       abort(422)
 
   '''
