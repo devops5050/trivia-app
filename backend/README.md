@@ -176,37 +176,27 @@ Trivia API endpoints are REST end points. At high level, it provides following e
       "success": false
     }
     
-    Valid quetion id sample: curl -X DELETE http://127.0.0.1:5000/questions/11
+    Valid quetion id sample: 
+    curl -X DELETE http://127.0.0.1:5000/questions/11
+    
     {
       "categories": {
         "1": "Science", 
-        "2": "Art", 
-        "3": "Geography", 
-        "4": "History", 
-        "5": "Entertainment", 
+        "2": "Art",
+        "3": "Geography",
+        "4": "History",
+        "5": "Entertainment",
         "6": "Sports"
       }, 
       "current_category": null, 
       "deleted": 11, 
       "questions": [
-        {
-          "answer": "Maya Angelou", 
-          "category": 4, 
-          "difficulty": 2, 
-          "id": 5, 
-          "question": "Whose is entitled 'I Know Why the Caged Bird Sings'?"
-        },
-        {
-          "answer": "Escher", 
-          "category": 2, 
-          "difficulty": 1, 
-          "id": 16, 
-          "question": " was a creator of optical illusions?"
-        }
-      ], 
-      "success": true, 
-      "total_questions": 20
-    }
+        {..},
+        {..}
+       ],
+       "success": true,
+       "total_questions": 20
+   }
 
 4. POST /questions
     It creates a new record in the database based on request object which contains question, its answer, category, and difficulty level.
