@@ -58,7 +58,7 @@ def create_app(test_config=None):
             })
 
         except Exception as e:
-            print(e)
+            # print(e)
             abort(400)
 
     @app.route('/questions', methods=['GET'])
@@ -72,7 +72,7 @@ def create_app(test_config=None):
 
             current_questions = paginate_questions(request, questions)
 
-            print(len(questions))
+            # print(len(questions))
 
             if len(current_questions) == 0:
                 abort(404)
@@ -86,14 +86,14 @@ def create_app(test_config=None):
             })
 
         except Exception as e:
-            print(e)
+            # print(e)
             abort(404)
 
     @app.route('/questions/<int:question_id>', methods=['DELETE'])
     def delete_question(question_id):
 
         try:
-            print('inside delete block')
+            # print('inside delete block')
 
             question = Question.query.filter(Question.id == question_id).one_or_none()
             question.delete()
@@ -119,15 +119,15 @@ def create_app(test_config=None):
             })
 
         except Exception as e:
-            print(e)
+            # print(e)
             abort(422)
 
     @app.route('/questions', methods=['POST'])
     def insert_question():
 
-        print('inside question post method')
+        # print('inside question post method')
         requestPayload = request.get_json()
-        print(requestPayload)
+        # print(requestPayload)
         newQuestionVal = requestPayload.get('question', '')
         newAnswerVal = requestPayload.get('answer', '')
         newDifficultyVal = requestPayload.get('difficulty', '')
@@ -148,7 +148,7 @@ def create_app(test_config=None):
             })
 
         except Exception as e:
-            print(e)
+            # print(e)
             abort(422)
 
     @app.route('/questions/search', methods=['POST', 'GET'])
@@ -164,12 +164,12 @@ def create_app(test_config=None):
 
         # POST testing
         requestPayload = request.get_json()
-        print(requestPayload)
+        # print(requestPayload)
         search_term = requestPayload.get('searchTerm', '')
-        print('Search term is ' + search_term)
+        # print('Search term is ' + search_term)
         search_results = Question.query.filter(Question.question.ilike(f'%{search_term}%')).all()
-        print('processed data is')
-        print(len(search_results))
+        # print('processed data is')
+        # print(len(search_results))
 
         current_questions = paginate_questions(request, search_results)
 
@@ -186,8 +186,8 @@ def create_app(test_config=None):
     def show_questions(category_id):
 
         search_results = Question.query.filter(Question.category == category_id).all()
-        print('processed data is')
-        print(len(search_results))
+        # print('processed data is')
+        # print(len(search_results))
 
         current_questions = paginate_questions(request, search_results)
 
@@ -203,9 +203,9 @@ def create_app(test_config=None):
     @app.route('/quizzes', methods=['POST'])
     def quizzes():
 
-        print('inside question post method')
+        # print('inside question post method')
         requestPayload = request.get_json()
-        print(requestPayload)
+        # print(requestPayload)
         # {
         #   'previous_questions': [],
         #   'quiz_category': {'type': 'click', 'id': 0}
@@ -214,15 +214,17 @@ def create_app(test_config=None):
         previous_questions = requestPayload.get('previous_questions', [])
         quiz_category = requestPayload.get('quiz_category', '')
 
-        print('previous_questions total: ' + str(len(previous_questions)))
-        print('quiz_category: ' + str(quiz_category['id']))
+        # print('previous_questions total: ' + str(len(previous_questions)))
+        # print('quiz_category: ' + str(quiz_category['id']))
 
         if quiz_category['id'] == 0:
             quizQuestions = Question.query.all()
         else:
             quizQuestions = Question.query.filter_by(category = quiz_category['id']).all()
 
-        print(quizQuestions)
+        # print(quizQuestions)
+        if len(quizQuestions) == 0:
+            abort(404)
 
         data = []
 
