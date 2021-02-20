@@ -217,14 +217,79 @@ Trivia API endpoints are REST end points. At high level, it provides following e
 
 5. POST /questions/search
     It accepts Search term from user and returns a collection of questions from the database.
+    
+    Sample URL:
+    
+    curl -X POST "http://127.0.0.1:5000/questions/search" -d "{\"searchTerm\":\"soccer\"}" -H "Content-Type: application/json"
+
+    Output:
+
+        {
+          "questions": [
+            {
+              "answer": "Brazil", 
+              "category": 6, 
+              "difficulty": 3, 
+              "id": 10, 
+              "question": "Which is the only team to play in every soccer World Cup tournament?"
+            }
+          ], 
+          "success": true, 
+          "total_questions": 1
+        }
 
 6. GET /categories/<category_id>/questions
     It returns a collection of questions against a specific category value from the database.
+    
+    Sample URL:
+    
+    curl -X GET "http://127.0.0.1:5000/categories/1/questions"
+    
+    Output:
+    
+        {
+          "questions": [
+            {
+              "answer": "The Liver", 
+              "category": 1, 
+              "difficulty": 4, 
+              "id": 20, 
+              "question": "What is the heaviest organ in the human body?"
+            }, 
+            {
+              "answer": "Blood", 
+              "category": 1, 
+              "difficulty": 4, 
+              "id": 22, 
+              "question": "Hematology is a branch of medicine involving the study of what?"
+            }
+          ], 
+          "success": true, 
+          "total_questions": 2
+        }
+
 
 7. POST /quizzes
     It returns a set of questions based on category selected or questions for all categories.
     
     It also keeps track of previously asked questions so that previously asked questions are not repeated.
+    
+    Sample Curl URL:
+    
+    curl -X POST "http://127.0.0.1:5000/quizzes" -d "{\"quiz_category\":{\"type\": \"Science\", \"id\": \"1\"},\"previous_questions\":[]}" -H "Content-Type: application/json"
+
+
+        {
+          "question": {
+            "answer": "Blood", 
+            "category": 1, 
+            "difficulty": 4, 
+            "id": 22, 
+            "question": "Hematology is a branch of medicine involving the study of what?"
+          }, 
+          "success": true
+        }
+
 
 ## Error Handling
 Errors are returned as JSON objects in the following format:
