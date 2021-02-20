@@ -31,7 +31,7 @@ class TriviaTestCase(unittest.TestCase):
             self.db.init_app(self.app)
             # create all tables
             self.db.create_all()
-    
+
     def tearDown(self):
         """Executed after reach test"""
         pass
@@ -120,5 +120,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertTrue(data['total_questions'])
 
 # Make the tests conveniently executable
+
+
 if __name__ == "__main__":
     unittest.main()
