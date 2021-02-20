@@ -83,14 +83,22 @@ class TriviaTestCase(unittest.TestCase):
 
     def test_delete_questions(self):
         print('********************************** inside test_delete_questions')
-        res = self.client().delete('/questions/7')
+
+        res = self.client().post('/questions', json=self.new_question)
         data = json.loads(res.data)
 
-        question = Question.query.filter(Question.id == 7).one_or_none()
+        newvalue = data['created']
+        url = "/questions/{0}".format(newvalue)
+        # print(url)
+
+        res = self.client().delete(url)
+        data = json.loads(res.data)
+
+        question = Question.query.filter(Question.id == newvalue).one_or_none()
 
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
-        self.assertEqual(data['deleted'], 7)
+        self.assertEqual(data['deleted'], newvalue)
         self.assertTrue(data['questions'])
         self.assertEqual(question, None)
         # print('**********************************')
@@ -103,6 +111,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
         self.assertTrue(data['created'])
+        # print(data['created'])
         self.assertTrue(len(data['questions']))
         # print('**********************************')
 
