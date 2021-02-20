@@ -3,6 +3,7 @@ __pycache__
 venv
 api-env
 test-env
+node_modules
 
 # OS generated files #
 ######################
