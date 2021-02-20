@@ -200,22 +200,25 @@ Trivia API endpoints are REST end points. At high level, it provides following e
 
 4. POST /questions
     It creates a new record in the database based on request object which contains question, its answer, category, and difficulty level.
+
     Sample curl: 
+    
     curl -X POST "http://127.0.0.1:5000/questions"  -d "{\"question\": \"who is the new president of USA?\",\"answer\": \"Brown\", \"difficulty\": 2, \"category\": 3}" -H "Content-Type: application/json"
     
     Output:
     
-    {
-      "created": 35, 
-      "questions": [
-        {..},
-        {..},
-        ], 
-        "success": true,
-        "total_questions": 24
-    }
+        {
+        "created": 35, 
+        "questions": [
+            {..},
+            {..},
+            ], 
+            "success": true,
+            "total_questions": 24
+        }
 
 5. POST /questions/search
+
     It accepts Search term from user and returns a collection of questions from the database.
     
     Sample URL:
@@ -267,7 +270,6 @@ Trivia API endpoints are REST end points. At high level, it provides following e
           "success": true, 
           "total_questions": 2
         }
-
 
 7. POST /quizzes
     It returns a set of questions based on category selected or questions for all categories.

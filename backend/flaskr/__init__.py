@@ -220,7 +220,7 @@ def create_app(test_config=None):
         if quiz_category['id'] == 0:
             quizQuestions = Question.query.all()
         else:
-            quizQuestions = Question.query.filter_by(category == quiz_category['id']).all()
+            quizQuestions = Question.query.filter_by(category = quiz_category['id']).all()
 
         print(quizQuestions)
 
